@@ -30,8 +30,8 @@ def create_model():
     # encoder
     x = Flatten()(input_true)
     x = Dense(128, activation="relu")(x)
-    logvar = Dense(64, activation="relu")(x)
-    mu = Dense(64, activation="relu")(x)
+    logvar = Dense(64)(x)
+    mu = Dense(64)(x)
     enc_reparam = Lambda(reparameterize)([mu, logvar, input_rand]) # randをskipconnectionにする
     enc_kld = Lambda(kld)([mu, logvar])
 
